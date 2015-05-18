@@ -36,8 +36,9 @@ namespace ST_Roster_Generator
 
         DialogResult result;//result of dialogs
 
-        public StreamReader fileReader; //File reading stream
-        public StreamWriter fileWriter; //File writing stream
+        public StreamReader inputFileReader; //File reading stream for the Name List files
+        public StreamReader saveFileReader; //File reading stream for the Roster File
+        public StreamWriter saveFileWriter; //File writing stream
 
         public Form1()
         {
@@ -47,19 +48,19 @@ namespace ST_Roster_Generator
         private void btnExit_Click(object sender, EventArgs e)
         {
             //Check if an input file was opened 
-            if (fileReader != null)
+            if (inputFileReader != null)
             {
                 //Close and dump file 
-                fileReader.Close();
-                fileReader.Dispose();
+                inputFileReader.Close();
+                inputFileReader.Dispose();
             }
-
+            
             //Check if an output file was opened 
-            if (fileWriter != null)
+            if (saveFileWriter != null)
             {
                 //Close and dump file 
-                fileWriter.Close();
-                fileWriter.Dispose();
+                saveFileWriter.Close();
+                saveFileWriter.Dispose();
             }
 
             //Close program 
@@ -120,11 +121,11 @@ namespace ST_Roster_Generator
         private void btnOpenXcomListFile_Click(object sender, EventArgs e)
         {
             //Check if an input file was already open
-            if (fileReader != null)
+            if (inputFileReader != null)
             {
                 //Close and dump file 
-                fileReader.Close();
-                fileReader.Dispose();
+                inputFileReader.Close();
+                inputFileReader.Dispose();
             }
 
             DialogResult result;//result of dialog
@@ -148,7 +149,7 @@ namespace ST_Roster_Generator
                     //Open the file with read access
                     FileStream inputFile = new FileStream(listFileName, FileMode.Open, FileAccess.Read);
 
-                    fileReader = new StreamReader(inputFile); //Pass the input file to the reader
+                    inputFileReader = new StreamReader(inputFile); //Pass the input file to the reader
                     
                 }
                 catch (IOException)
@@ -162,11 +163,11 @@ namespace ST_Roster_Generator
         private void btnOpenCustomNameListFile_Click(object sender, EventArgs e)
         {
             //Check if an input file was already open
-            if (fileReader != null)
+            if (inputFileReader != null)
             {
                 //Close and dump file
-                fileReader.Close();
-                fileReader.Dispose();
+                inputFileReader.Close();
+                inputFileReader.Dispose();
             }
 
             
@@ -189,7 +190,7 @@ namespace ST_Roster_Generator
                     //Open the file with read access
                     FileStream inputFile = new FileStream(listFileName, FileMode.Open, FileAccess.Read);
 
-                    fileReader = new StreamReader(inputFile); //Pass the input file to the reader
+                    inputFileReader = new StreamReader(inputFile); //Pass the input file to the reader
 
                 }
                 catch (IOException)
@@ -200,25 +201,24 @@ namespace ST_Roster_Generator
             }// end click ok
         }//end OpenCustomNameList button
 
-        private int randomNumGen()
-        {
-
-        }
-
         private void xcomListConverter(Array listArray)
         {
-            
+            //Method for converting the raw data in the nameList array from the XCOM Name List file into only names.
         }
 
         private void btnSaveRosterFile_Click(object sender, EventArgs e)
         {
             //Check if an output file was already open
-            if (fileWriter != null)
+            if (saveFileWriter != null || saveFileReader != null)
             {
-                //Close and dump file
-                fileWriter.Close();
-                fileWriter.Dispose();
+                //Close and dump files
+                saveFileReader.Close();
+                saveFileReader.Dispose();
+                saveFileWriter.Close();
+                saveFileWriter.Dispose();
             }
+
+            
 
             using (SaveFileDialog fileChooser = new SaveFileDialog())
             {
@@ -235,21 +235,41 @@ namespace ST_Roster_Generator
                 if (result == DialogResult.OK)
                 {
                     if (saveFileName == string.Empty)
-                        MessageBox.Show("Invalid Name", "Error", MessageBoxButtons.OK);
+                        MessageBox.Show("Invalid Roster Save File Name", "Error", MessageBoxButtons.OK);
                     else
                     {
                         try
                         {
-                            FileStream outfile = new FileStream(saveFileName, FileMode.OpenOrCreate , FileAccess.ReadWrite);
+                            FileStream rosterFile = new FileStream(saveFileName, FileMode.OpenOrCreate , FileAccess.ReadWrite);
 
-                            //Pass the file to the writer *
-                            fileWriter = new StreamWriter(outfile);
+                            //Pass the file to the writers
+                            saveFileReader = new StreamReader(rosterFile);
+                            saveFileWriter = new StreamWriter(rosterFile);
                         }
                         catch (IOException)
                         {
                             MessageBox.Show("Error opening Roster file");
                         }//end try/catch
-                    }                    
+                    }                   
+                     
+                    //Pull the information in the file into the rosterList array for comparison purposes
+                    try
+                    {
+                        //Read each line as individual records
+                        readRecord = saveFileReader.ReadLine();
+
+                        //while there are still new records
+                         while (readRecord != null)
+                        {
+                            rosterList = readRecord.Split();
+                        }
+
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No Roster File Opened");
+                    }
+
                 }//end if OK
             }//end filechooser
         }//end save roster file button
