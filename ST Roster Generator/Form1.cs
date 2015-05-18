@@ -195,5 +195,15 @@ namespace ST_Roster_Generator
 
             }// end click ok
         }//end OpenCustomNameList button
+
+        private int randomNumGen()
+        {
+
+        }
+
+        private void xcomListConverter(Array listArray)
+        {
+            
+        }
     }
 }
