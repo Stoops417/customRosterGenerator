@@ -32,13 +32,16 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.numRosterSize = new System.Windows.Forms.NumericUpDown();
             this.lblRosterSize = new System.Windows.Forms.Label();
-            this.cmbNameListFile = new System.Windows.Forms.ComboBox();
+            this.cmbCustomNameListFile = new System.Windows.Forms.ComboBox();
             this.cmbRosterFile = new System.Windows.Forms.ComboBox();
-            this.lblNameListFile = new System.Windows.Forms.Label();
             this.lblRosterFile = new System.Windows.Forms.Label();
-            this.btnOpenNameListFile = new System.Windows.Forms.Button();
+            this.btnOpenCustomNameListFile = new System.Windows.Forms.Button();
             this.btnSaveRosterFile = new System.Windows.Forms.Button();
             this.lblRosterSizeLimit = new System.Windows.Forms.Label();
+            this.cmbXcomListFile = new System.Windows.Forms.ComboBox();
+            this.btnOpenXcomListFile = new System.Windows.Forms.Button();
+            this.rdbXcomListRadio = new System.Windows.Forms.RadioButton();
+            this.rdbCustomNameListRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numRosterSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +66,7 @@
             // 
             // numRosterSize
             // 
-            this.numRosterSize.Location = new System.Drawing.Point(151, 149);
+            this.numRosterSize.Location = new System.Drawing.Point(156, 163);
             this.numRosterSize.Maximum = new decimal(new int[] {
             10,
             0,
@@ -78,58 +81,49 @@
             // lblRosterSize
             // 
             this.lblRosterSize.AutoSize = true;
-            this.lblRosterSize.Location = new System.Drawing.Point(69, 151);
+            this.lblRosterSize.Location = new System.Drawing.Point(74, 165);
             this.lblRosterSize.Name = "lblRosterSize";
             this.lblRosterSize.Size = new System.Drawing.Size(76, 13);
             this.lblRosterSize.TabIndex = 3;
             this.lblRosterSize.Text = "Size of Roster:";
             // 
-            // cmbNameListFile
+            // cmbCustomNameListFile
             // 
-            this.cmbNameListFile.FormattingEnabled = true;
-            this.cmbNameListFile.Location = new System.Drawing.Point(151, 31);
-            this.cmbNameListFile.Name = "cmbNameListFile";
-            this.cmbNameListFile.Size = new System.Drawing.Size(121, 21);
-            this.cmbNameListFile.TabIndex = 4;
+            this.cmbCustomNameListFile.FormattingEnabled = true;
+            this.cmbCustomNameListFile.Location = new System.Drawing.Point(156, 78);
+            this.cmbCustomNameListFile.Name = "cmbCustomNameListFile";
+            this.cmbCustomNameListFile.Size = new System.Drawing.Size(121, 21);
+            this.cmbCustomNameListFile.TabIndex = 4;
             // 
             // cmbRosterFile
             // 
             this.cmbRosterFile.FormattingEnabled = true;
-            this.cmbRosterFile.Location = new System.Drawing.Point(151, 92);
+            this.cmbRosterFile.Location = new System.Drawing.Point(156, 120);
             this.cmbRosterFile.Name = "cmbRosterFile";
             this.cmbRosterFile.Size = new System.Drawing.Size(121, 21);
             this.cmbRosterFile.TabIndex = 5;
             // 
-            // lblNameListFile
-            // 
-            this.lblNameListFile.AutoSize = true;
-            this.lblNameListFile.Location = new System.Drawing.Point(69, 34);
-            this.lblNameListFile.Name = "lblNameListFile";
-            this.lblNameListFile.Size = new System.Drawing.Size(76, 13);
-            this.lblNameListFile.TabIndex = 6;
-            this.lblNameListFile.Text = "Name List File:";
-            // 
             // lblRosterFile
             // 
             this.lblRosterFile.AutoSize = true;
-            this.lblRosterFile.Location = new System.Drawing.Point(85, 95);
+            this.lblRosterFile.Location = new System.Drawing.Point(90, 123);
             this.lblRosterFile.Name = "lblRosterFile";
             this.lblRosterFile.Size = new System.Drawing.Size(60, 13);
             this.lblRosterFile.TabIndex = 7;
             this.lblRosterFile.Text = "Roster File:";
             // 
-            // btnOpenNameListFile
+            // btnOpenCustomNameListFile
             // 
-            this.btnOpenNameListFile.Location = new System.Drawing.Point(278, 29);
-            this.btnOpenNameListFile.Name = "btnOpenNameListFile";
-            this.btnOpenNameListFile.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenNameListFile.TabIndex = 8;
-            this.btnOpenNameListFile.Text = "Browse";
-            this.btnOpenNameListFile.UseVisualStyleBackColor = true;
+            this.btnOpenCustomNameListFile.Location = new System.Drawing.Point(283, 76);
+            this.btnOpenCustomNameListFile.Name = "btnOpenCustomNameListFile";
+            this.btnOpenCustomNameListFile.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenCustomNameListFile.TabIndex = 8;
+            this.btnOpenCustomNameListFile.Text = "Browse";
+            this.btnOpenCustomNameListFile.UseVisualStyleBackColor = true;
             // 
             // btnSaveRosterFile
             // 
-            this.btnSaveRosterFile.Location = new System.Drawing.Point(278, 92);
+            this.btnSaveRosterFile.Location = new System.Drawing.Point(283, 120);
             this.btnSaveRosterFile.Name = "btnSaveRosterFile";
             this.btnSaveRosterFile.Size = new System.Drawing.Size(75, 23);
             this.btnSaveRosterFile.TabIndex = 9;
@@ -139,11 +133,50 @@
             // lblRosterSizeLimit
             // 
             this.lblRosterSizeLimit.AutoSize = true;
-            this.lblRosterSizeLimit.Location = new System.Drawing.Point(218, 151);
+            this.lblRosterSizeLimit.Location = new System.Drawing.Point(223, 165);
             this.lblRosterSizeLimit.Name = "lblRosterSizeLimit";
             this.lblRosterSizeLimit.Size = new System.Drawing.Size(48, 13);
             this.lblRosterSizeLimit.TabIndex = 10;
             this.lblRosterSizeLimit.Text = "(Max 10)";
+            // 
+            // cmbXcomListFile
+            // 
+            this.cmbXcomListFile.FormattingEnabled = true;
+            this.cmbXcomListFile.Location = new System.Drawing.Point(156, 33);
+            this.cmbXcomListFile.Name = "cmbXcomListFile";
+            this.cmbXcomListFile.Size = new System.Drawing.Size(121, 21);
+            this.cmbXcomListFile.TabIndex = 11;
+            // 
+            // btnOpenXcomListFile
+            // 
+            this.btnOpenXcomListFile.Location = new System.Drawing.Point(283, 31);
+            this.btnOpenXcomListFile.Name = "btnOpenXcomListFile";
+            this.btnOpenXcomListFile.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenXcomListFile.TabIndex = 13;
+            this.btnOpenXcomListFile.Text = "Browse";
+            this.btnOpenXcomListFile.UseVisualStyleBackColor = true;
+            // 
+            // rdbXcomListRadio
+            // 
+            this.rdbXcomListRadio.AutoSize = true;
+            this.rdbXcomListRadio.Location = new System.Drawing.Point(22, 34);
+            this.rdbXcomListRadio.Name = "rdbXcomListRadio";
+            this.rdbXcomListRadio.Size = new System.Drawing.Size(128, 17);
+            this.rdbXcomListRadio.TabIndex = 14;
+            this.rdbXcomListRadio.TabStop = true;
+            this.rdbXcomListRadio.Text = "XCOM Name List File:";
+            this.rdbXcomListRadio.UseVisualStyleBackColor = true;
+            // 
+            // rdbCustomNameListRadio
+            // 
+            this.rdbCustomNameListRadio.AutoSize = true;
+            this.rdbCustomNameListRadio.Location = new System.Drawing.Point(18, 79);
+            this.rdbCustomNameListRadio.Name = "rdbCustomNameListRadio";
+            this.rdbCustomNameListRadio.Size = new System.Drawing.Size(132, 17);
+            this.rdbCustomNameListRadio.TabIndex = 15;
+            this.rdbCustomNameListRadio.TabStop = true;
+            this.rdbCustomNameListRadio.Text = "Custom Name List File:";
+            this.rdbCustomNameListRadio.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -151,13 +184,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 283);
             this.ControlBox = false;
+            this.Controls.Add(this.rdbCustomNameListRadio);
+            this.Controls.Add(this.rdbXcomListRadio);
+            this.Controls.Add(this.btnOpenXcomListFile);
+            this.Controls.Add(this.cmbXcomListFile);
             this.Controls.Add(this.lblRosterSizeLimit);
             this.Controls.Add(this.btnSaveRosterFile);
-            this.Controls.Add(this.btnOpenNameListFile);
+            this.Controls.Add(this.btnOpenCustomNameListFile);
             this.Controls.Add(this.lblRosterFile);
-            this.Controls.Add(this.lblNameListFile);
             this.Controls.Add(this.cmbRosterFile);
-            this.Controls.Add(this.cmbNameListFile);
+            this.Controls.Add(this.cmbCustomNameListFile);
             this.Controls.Add(this.lblRosterSize);
             this.Controls.Add(this.numRosterSize);
             this.Controls.Add(this.btnGenerate);
@@ -176,13 +212,16 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.NumericUpDown numRosterSize;
         private System.Windows.Forms.Label lblRosterSize;
-        private System.Windows.Forms.ComboBox cmbNameListFile;
+        private System.Windows.Forms.ComboBox cmbCustomNameListFile;
         private System.Windows.Forms.ComboBox cmbRosterFile;
-        private System.Windows.Forms.Label lblNameListFile;
         private System.Windows.Forms.Label lblRosterFile;
-        private System.Windows.Forms.Button btnOpenNameListFile;
+        private System.Windows.Forms.Button btnOpenCustomNameListFile;
         private System.Windows.Forms.Button btnSaveRosterFile;
         private System.Windows.Forms.Label lblRosterSizeLimit;
+        private System.Windows.Forms.ComboBox cmbXcomListFile;
+        private System.Windows.Forms.Button btnOpenXcomListFile;
+        private System.Windows.Forms.RadioButton rdbXcomListRadio;
+        private System.Windows.Forms.RadioButton rdbCustomNameListRadio;
     }
 }
 
