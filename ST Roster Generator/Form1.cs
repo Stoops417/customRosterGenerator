@@ -65,6 +65,7 @@ namespace ST_Roster_Generator
 
         private void numRosterSize_ValueChanged(object sender, EventArgs e)
         {
+            //Save the roster size value to the proper variable
             rosterSize = Convert.ToInt32(numRosterSize.Value);
         }
 
@@ -111,6 +112,88 @@ namespace ST_Roster_Generator
                     btnOpenXcomListFile.Enabled = false;
                 }
             }//end checked if
-        }
+        }//end Custom Name List radio button
+
+        private void btnOpenXcomListFile_Click(object sender, EventArgs e)
+        {
+            //Check if an input file was already open
+            if (fileReader != null)
+            {
+                //Close and dump file 
+                fileReader.Close();
+                fileReader.Dispose();
+            }
+
+            DialogResult result;//result of dialog
+
+            //open the file chooser dialog
+            using (OpenFileDialog chooseFile = new OpenFileDialog())
+            {
+                result = chooseFile.ShowDialog();//Save the result
+
+                filename = chooseFile.FileName;//Save the filename
+
+            }//end open dialog
+
+            //If user selected file
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+
+                    //Open the file with read access
+                    FileStream inputFile = new FileStream(filename, FileMode.Open, FileAccess.Read);
+
+                    fileReader = new StreamReader(inputFile); //Pass the input file to the reader
+                    
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("An error occured while opening the XCOM Name List file");
+                }//end try/catch
+
+            }// end click ok
+        }//end OpenXcomListFile button
+
+        private void btnOpenCustomNameListFile_Click(object sender, EventArgs e)
+        {
+            //Check if an input file was already open
+            if (fileReader != null)
+            {
+                //Close and dump file
+                fileReader.Close();
+                fileReader.Dispose();
+            }
+
+            DialogResult result;//result of dialog
+
+            //open the file chooser dialog
+            using (OpenFileDialog chooseFile = new OpenFileDialog())
+            {
+                result = chooseFile.ShowDialog();//Save the result
+
+                filename = chooseFile.FileName;//Save the filename
+
+            }//end open dialog
+
+            //If user selected file
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+
+                    //Open the file with read access
+                    FileStream inputFile = new FileStream(filename, FileMode.Open, FileAccess.Read);
+
+                    fileReader = new StreamReader(inputFile); //Pass the input file to the reader
+
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("An error occured while opening the Custom Name List file");
+                }//end try/catch
+
+            }// end click ok
+        }//end OpenCustomNameList button
     }
 }

@@ -122,6 +122,7 @@
             this.btnOpenCustomNameListFile.TabIndex = 8;
             this.btnOpenCustomNameListFile.Text = "Browse";
             this.btnOpenCustomNameListFile.UseVisualStyleBackColor = true;
+            this.btnOpenCustomNameListFile.Click += new System.EventHandler(this.btnOpenCustomNameListFile_Click);
             // 
             // btnSaveRosterFile
             // 
@@ -159,6 +160,7 @@
             this.btnOpenXcomListFile.TabIndex = 13;
             this.btnOpenXcomListFile.Text = "Browse";
             this.btnOpenXcomListFile.UseVisualStyleBackColor = true;
+            this.btnOpenXcomListFile.Click += new System.EventHandler(this.btnOpenXcomListFile_Click);
             // 
             // rdbXcomListRadio
             // 
