@@ -24,7 +24,8 @@ namespace ST_Roster_Generator
 
         int rndRNG; //Random number from the RNG to be used for randomizing
 
-        string filename; //Name of file
+        string listFileName; //Name of list file
+        string saveFileName; //Name of roster save file
 
         string readRecord; //Holding variable for individual records (Names)
 
@@ -32,6 +33,8 @@ namespace ST_Roster_Generator
 
         string[] nameList; //Array for incoming name list
         string[] rosterList; //Array for custom roster
+
+        DialogResult result;//result of dialogs
 
         public StreamReader fileReader; //File reading stream
         public StreamWriter fileWriter; //File writing stream
@@ -129,9 +132,10 @@ namespace ST_Roster_Generator
             //open the file chooser dialog
             using (OpenFileDialog chooseFile = new OpenFileDialog())
             {
+                chooseFile.Title = "Choose your XCOM Name List File";
                 result = chooseFile.ShowDialog();//Save the result
 
-                filename = chooseFile.FileName;//Save the filename
+                listFileName = chooseFile.FileName;//Save the filename
 
             }//end open dialog
 
@@ -142,7 +146,7 @@ namespace ST_Roster_Generator
                 {
 
                     //Open the file with read access
-                    FileStream inputFile = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                    FileStream inputFile = new FileStream(listFileName, FileMode.Open, FileAccess.Read);
 
                     fileReader = new StreamReader(inputFile); //Pass the input file to the reader
                     
@@ -165,14 +169,14 @@ namespace ST_Roster_Generator
                 fileReader.Dispose();
             }
 
-            DialogResult result;//result of dialog
-
+            
             //open the file chooser dialog
             using (OpenFileDialog chooseFile = new OpenFileDialog())
             {
+                chooseFile.Title = "Choose your Custom Name List file";
                 result = chooseFile.ShowDialog();//Save the result
 
-                filename = chooseFile.FileName;//Save the filename
+                listFileName = chooseFile.FileName;//Save the filename
 
             }//end open dialog
 
@@ -183,7 +187,7 @@ namespace ST_Roster_Generator
                 {
 
                     //Open the file with read access
-                    FileStream inputFile = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                    FileStream inputFile = new FileStream(listFileName, FileMode.Open, FileAccess.Read);
 
                     fileReader = new StreamReader(inputFile); //Pass the input file to the reader
 
@@ -205,5 +209,49 @@ namespace ST_Roster_Generator
         {
             
         }
+
+        private void btnSaveRosterFile_Click(object sender, EventArgs e)
+        {
+            //Check if an output file was already open
+            if (fileWriter != null)
+            {
+                //Close and dump file
+                fileWriter.Close();
+                fileWriter.Dispose();
+            }
+
+            using (SaveFileDialog fileChooser = new SaveFileDialog())
+            {
+
+                //select or create an output file to store the input data.
+
+                fileChooser.Title = "Choose a file for your Roster";
+                fileChooser.DefaultExt = "txt"; //Set the default extention
+                fileChooser.AddExtension = true; //add the default extention if omitted
+                fileChooser.CheckFileExists = false;
+                result = fileChooser.ShowDialog();
+                saveFileName = fileChooser.FileName;
+
+                if (result == DialogResult.OK)
+                {
+                    if (saveFileName == string.Empty)
+                        MessageBox.Show("Invalid Name", "Error", MessageBoxButtons.OK);
+                    else
+                    {
+                        try
+                        {
+                            FileStream outfile = new FileStream(saveFileName, FileMode.OpenOrCreate , FileAccess.ReadWrite);
+
+                            //Pass the file to the writer *
+                            fileWriter = new StreamWriter(outfile);
+                        }
+                        catch (IOException)
+                        {
+                            MessageBox.Show("Error opening Roster file");
+                        }//end try/catch
+                    }                    
+                }//end if OK
+            }//end filechooser
+        }//end save roster file button
     }
 }

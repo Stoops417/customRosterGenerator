@@ -132,6 +132,7 @@
             this.btnSaveRosterFile.TabIndex = 9;
             this.btnSaveRosterFile.Text = "Browse";
             this.btnSaveRosterFile.UseVisualStyleBackColor = true;
+            this.btnSaveRosterFile.Click += new System.EventHandler(this.btnSaveRosterFile_Click);
             // 
             // lblRosterSizeLimit
             // 
