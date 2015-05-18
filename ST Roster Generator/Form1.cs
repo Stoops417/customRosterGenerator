@@ -67,5 +67,50 @@ namespace ST_Roster_Generator
         {
             rosterSize = Convert.ToInt32(numRosterSize.Value);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbXcomListRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            //Check if the radio box has been checked or unchecked
+            if (rdbXcomListRadio.Checked == true)
+            {
+                //Enable the combobox
+                cmbXcomListFile.Enabled = true;
+
+                //Enable the File Browser
+                btnOpenXcomListFile.Enabled = true;
+
+                //Disable the Custom combobox and browser if not already done
+                if (cmbCustomNameListFile.Enabled == true || btnOpenCustomNameListFile.Enabled == true)
+                {
+                    cmbCustomNameListFile.Enabled = false;
+                    btnOpenCustomNameListFile.Enabled = false;
+                }
+            }//end checked if
+        }
+
+        private void rdbCustomNameListRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            //Check if the radio box has been checked or unchecked
+            if (rdbCustomNameListRadio.Checked == true)
+            {
+                //Enable the combobox
+                cmbCustomNameListFile.Enabled = true;
+
+                //Enable the File Browser
+                btnOpenCustomNameListFile.Enabled = true;
+
+                //Disable the XCOM combobox and browser if not already done
+                if (cmbXcomListFile.Enabled == true || btnOpenXcomListFile.Enabled == true)
+                {
+                    cmbXcomListFile.Enabled = false;
+                    btnOpenXcomListFile.Enabled = false;
+                }
+            }//end checked if
+        }
     }
 }

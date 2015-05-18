@@ -89,6 +89,7 @@
             // 
             // cmbCustomNameListFile
             // 
+            this.cmbCustomNameListFile.Enabled = false;
             this.cmbCustomNameListFile.FormattingEnabled = true;
             this.cmbCustomNameListFile.Location = new System.Drawing.Point(156, 78);
             this.cmbCustomNameListFile.Name = "cmbCustomNameListFile";
@@ -114,6 +115,7 @@
             // 
             // btnOpenCustomNameListFile
             // 
+            this.btnOpenCustomNameListFile.Enabled = false;
             this.btnOpenCustomNameListFile.Location = new System.Drawing.Point(283, 76);
             this.btnOpenCustomNameListFile.Name = "btnOpenCustomNameListFile";
             this.btnOpenCustomNameListFile.Size = new System.Drawing.Size(75, 23);
@@ -141,6 +143,7 @@
             // 
             // cmbXcomListFile
             // 
+            this.cmbXcomListFile.Enabled = false;
             this.cmbXcomListFile.FormattingEnabled = true;
             this.cmbXcomListFile.Location = new System.Drawing.Point(156, 33);
             this.cmbXcomListFile.Name = "cmbXcomListFile";
@@ -149,6 +152,7 @@
             // 
             // btnOpenXcomListFile
             // 
+            this.btnOpenXcomListFile.Enabled = false;
             this.btnOpenXcomListFile.Location = new System.Drawing.Point(283, 31);
             this.btnOpenXcomListFile.Name = "btnOpenXcomListFile";
             this.btnOpenXcomListFile.Size = new System.Drawing.Size(75, 23);
@@ -163,9 +167,9 @@
             this.rdbXcomListRadio.Name = "rdbXcomListRadio";
             this.rdbXcomListRadio.Size = new System.Drawing.Size(128, 17);
             this.rdbXcomListRadio.TabIndex = 14;
-            this.rdbXcomListRadio.TabStop = true;
             this.rdbXcomListRadio.Text = "XCOM Name List File:";
             this.rdbXcomListRadio.UseVisualStyleBackColor = true;
+            this.rdbXcomListRadio.CheckedChanged += new System.EventHandler(this.rdbXcomListRadio_CheckedChanged);
             // 
             // rdbCustomNameListRadio
             // 
@@ -174,9 +178,9 @@
             this.rdbCustomNameListRadio.Name = "rdbCustomNameListRadio";
             this.rdbCustomNameListRadio.Size = new System.Drawing.Size(132, 17);
             this.rdbCustomNameListRadio.TabIndex = 15;
-            this.rdbCustomNameListRadio.TabStop = true;
             this.rdbCustomNameListRadio.Text = "Custom Name List File:";
             this.rdbCustomNameListRadio.UseVisualStyleBackColor = true;
+            this.rdbCustomNameListRadio.CheckedChanged += new System.EventHandler(this.rdbCustomNameListRadio_CheckedChanged);
             // 
             // Form1
             // 
@@ -200,6 +204,7 @@
             this.Controls.Add(this.btnExit);
             this.Name = "Form1";
             this.Text = "ST Roster Generator";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRosterSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
