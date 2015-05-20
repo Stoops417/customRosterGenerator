@@ -21,8 +21,8 @@ namespace ST_Roster_Generator
         //Declare Variables
 
         int rosterSize; //Size of the desired random roster
-
         int rndRNG; //Random number from the RNG to be used for randomizing
+        int readCounter = 0; //Counter for array index during reading of Roster records
 
         string listFileName; //Name of list file
         string saveFileName; //Name of roster save file
@@ -218,7 +218,8 @@ namespace ST_Roster_Generator
                 saveFileWriter.Dispose();
             }
 
-            
+            //Reset the readCounter to fill in the beginning of the array.
+            readCounter = 0;
 
             using (SaveFileDialog fileChooser = new SaveFileDialog())
             {
@@ -254,14 +255,14 @@ namespace ST_Roster_Generator
                      
                     //Pull the information in the file into the rosterList array for comparison purposes
                     try
-                    {
-                        //Read each line as individual records
-                        readRecord = saveFileReader.ReadLine();
-
-                        //while there are still new records
-                         while (readRecord != null)
+                    {                  
+                        //while there are still new records, Read each line as individual records
+                        while ((readRecord = saveFileReader.ReadLine()) != null)
                         {
-                            rosterList = readRecord.Split();
+                            //record each line into an index of the array
+                            rosterList[readCounter] = readRecord;
+
+                            ++readCounter; //iterate counter
                         }
 
                     }
